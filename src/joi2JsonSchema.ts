@@ -6,12 +6,12 @@ const filterMap = (schema: Schema) => ({
   properties: schema._ids && schema._ids._byKey,
   // @ts-ignore
   enums: schema._valids ? Array.from(schema._valids._values) : [],
-  items: schema.$_terms?.items ? schema.$_terms.items.map((item: any) => {
+  items: schema.$_terms?.items && schema.$_terms.items.map((item: any) => {
     if (item?.type) {
       return { type: item.type }
     }
     return undefined;
-  }).filter((item: any) => item) : [],
+  }).filter((item: any) => item),
 })
 
 export default (schema: Schema, options = {}) => {
