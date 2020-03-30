@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prepublishOnly": "npm run test && np --yolo --no-publish --tag=latest",
+    "postpublish": "tnpm-sync",
     "build": "father-build",
     "test": "umi-test"
   },
@@ -27,6 +28,7 @@
     "@types/jest": "^25.1.4",
     "@umijs/test": "^3.0.16",
     "father-build": "^1.17.2",
-    "np": "^6.2.0"
+    "np": "^6.2.0",
+    "tnpm-sync": "^1.0.0"
   }
 }
