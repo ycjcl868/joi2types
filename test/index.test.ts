@@ -1,5 +1,5 @@
 import Joi from '@hapi/joi';
-import Joi2Types, { joi2JsonSchema } from './';
+import Joi2Types, { joi2JsonSchema } from '../';
 
 test('joi2Types object', async () => {
   const joiEmptyObj = Joi.object();
