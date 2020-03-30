@@ -23,4 +23,5 @@ export default async (schema: Schema, options: Options = defaultOptions) => {
   return types;
 }
 
+export const jsonSchema2Types = compile;
 export const joi2JsonSchema = convert;

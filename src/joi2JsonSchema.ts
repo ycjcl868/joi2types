@@ -52,15 +52,16 @@ export default (schema: Schema, options = {}) => {
       return initValue;
     }
 
+    if ('additionalProperties' in options) {
+      // @ts-ignore
+      jsonType.additionalProperties = options.additionalProperties;
+    }
+
     if (properties?.size > 0) {
       // @ts-ignore
       jsonType.properties = {};
       // @ts-ignore
       recursive(properties, jsonType.properties)
-    }
-    if ('additionalProperties' in options) {
-      // @ts-ignore
-      jsonType.additionalProperties = options.additionalProperties;
     }
   }
   return jsonType;
