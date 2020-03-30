@@ -53,13 +53,15 @@ export default (schema: Schema, options = {}) => {
     }
 
     // @ts-ignore
-    jsonType.properties = {};
+    if (properties?.size > 0) {
+      jsonType.properties = {};
+      // @ts-ignore
+      recursive(properties, jsonType.properties)
+    }
     if ('additionalProperties' in options) {
       // @ts-ignore
       jsonType.additionalProperties = options.additionalProperties;
     }
-    // @ts-ignore
-    recursive(properties, jsonType.properties)
   }
   return jsonType;
 }
