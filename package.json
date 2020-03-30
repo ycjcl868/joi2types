@@ -4,7 +4,7 @@
   "description": "Convert @hapi/joi schema into TypeScript",
   "main": "lib/index.js",
   "scripts": {
-    "prepublishOnly": "npm run test && np --yolo --no-publish --tag=latest",
+    "prepublishOnly": "npm run test && npm run build && np --yolo --no-publish --tag=latest",
     "postpublish": "tnpm-sync",
     "build": "father-build",
     "test": "umi-test"
