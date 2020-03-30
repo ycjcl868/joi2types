@@ -52,8 +52,8 @@ export default (schema: Schema, options = {}) => {
       return initValue;
     }
 
-    // @ts-ignore
     if (properties?.size > 0) {
+      // @ts-ignore
       jsonType.properties = {};
       // @ts-ignore
       recursive(properties, jsonType.properties)
