@@ -1,0 +1,5 @@
+__snapshots__
+node_modules
+src
+.fatherrc.ts
+tsconfig.json
