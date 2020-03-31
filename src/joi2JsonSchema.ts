@@ -11,12 +11,12 @@ const filterMap = (schema: Schema) => ({
       return { type: item.type }
     }
     return undefined;
-  }).filter((item: any) => item),
+  }).filter(Boolean),
+  description: schema._flags?.description,
 })
 
 export default (schema: Schema, options = {}) => {
-  // console.log('schema', schema)
-  const { type, properties, enums, items: originItems } = filterMap(schema);
+  const { type, properties, enums, items: originItems, description } = filterMap(schema);
   let items = originItems;
   if (items?.length === 1) {
     items = items[0];
@@ -24,15 +24,19 @@ export default (schema: Schema, options = {}) => {
   const jsonType = {
     type,
     ...(enums?.length > 0 ? { enum: enums } : {}),
-    ...((items?.length > 0 || typeof items === 'object') ? { items } : {})
+    ...((items?.length > 0 || items?.type) ? { items } : {}),
+    ...(description ? { description } : {}),
   }
   if (type === 'object') {
     const recursive = (properties: any, initValue = {}) => {
       if (properties?.forEach) {
         // @ts-ignore
         properties?.forEach((value, key) => {
-          const { type, properties, enums  } = filterMap(value.schema || value);
-          const property = { type };
+          const { type, properties, enums, description } = filterMap(value.schema || value);
+          const property = {
+            type,
+            ...(description ? { description } : {})
+          };
           if (enums?.length) {
             // @ts-ignore
             property.enum = enums;

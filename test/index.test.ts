@@ -1,5 +1,5 @@
 import Joi from '@hapi/joi';
-import Joi2Types, { joi2JsonSchema } from '../';
+import Joi2Types, { joi2JsonSchema } from '../src';
 
 test('joi2Types object', async () => {
   const joiEmptyObj = Joi.object();
@@ -15,17 +15,18 @@ test('joi2Types object', async () => {
   const joi = Joi.object({
     bar: Joi.boolean(),
     foo: Joi.object({
-      foo_1: Joi.boolean(),
+      foo_1: Joi.boolean().description('this is foo_1'),
       foo_2: Joi.boolean(),
       foo_3: Joi.string().valid('browser', 'hash', 'memory')
     })
-  }).description('safawefewfwe').example('qwwaefawef');
+  }).description('This is description');
   expect(
     joi2JsonSchema(joi, {
       additionalProperties: true,
     })
   ).toEqual({
     type: 'object',
+    description: "This is description",
     additionalProperties: true,
     properties: {
       bar: {
@@ -36,6 +37,7 @@ test('joi2Types object', async () => {
         additionalProperties: true,
         properties: {
           foo_1: {
+            description: "this is foo_1",
             type: "boolean"
           },
           foo_2: {
@@ -51,6 +53,7 @@ test('joi2Types object', async () => {
   })
 
   const types = await Joi2Types(joi);
+  console.log('types', types);
   expect(types.trim()).toMatchSnapshot();
 })
 
@@ -72,14 +75,14 @@ test('joi2Types string enum', async () => {
 })
 
 test('joi2Types array', async () => {
-  // const schema = Joi.array();
-  // expect(
-  //   joi2JsonSchema(schema)
-  // ).toEqual({
-  //   type: 'array',
-  // })
-  // const types = await Joi2Types(schema);
-  // expect(types.trim()).toMatchSnapshot();
+  const schema = Joi.array();
+  expect(
+    joi2JsonSchema(schema)
+  ).toEqual({
+    type: 'array',
+  })
+  const types = await Joi2Types(schema);
+  expect(types.trim()).toMatchSnapshot();
 
   const schemaWithItems = Joi.array().items(Joi.string());
   expect(
