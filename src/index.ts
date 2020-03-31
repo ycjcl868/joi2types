@@ -1,14 +1,14 @@
 import { Schema } from '@hapi/joi';
 import { compile } from 'json-schema-to-typescript'
-import convert from './joi2JsonSchema';
+import transformer from './transformer';
 
-interface Options {
+export interface Options {
   additionalProperties?: boolean;
   interfaceName?: string;
   bannerComment?: string;
 }
 
-const defaultOptions = {
+export const defaultOptions = {
   additionalProperties: false,
   interfaceName: 'JoiTypes',
   bannerComment: '',
@@ -18,10 +18,12 @@ const defaultOptions = {
  * convert into types
  */
 export default async (schema: Schema, options: Options = defaultOptions) => {
-  const jsonSchema: any = convert(schema, options);
-  const types = await compile(jsonSchema, options.interfaceName as string, options);
+  const opts = { ...defaultOptions, ...options }
+  const jsonSchema = transformer(schema, opts);
+  const { bannerComment, interfaceName } = opts;
+  const types = await compile(jsonSchema, interfaceName as string, { bannerComment });
   return types;
 }
 
 export const jsonSchema2Types = compile;
-export const joi2JsonSchema = convert;
+export const joi2JsonSchema = transformer;

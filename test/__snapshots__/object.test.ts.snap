@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`joi2Types array 1`] = `"export type JoiTypes = any[];"`;
-
-exports[`joi2Types array 2`] = `"export type JoiTypes = string[];"`;
-
 exports[`joi2Types object 1`] = `
 "/**
  * This is description
@@ -17,7 +13,9 @@ export interface JoiTypes {
     foo_1?: boolean;
     foo_2?: boolean;
     foo_3?: \\"browser\\" | \\"hash\\" | \\"memory\\";
+    [k: string]: any;
   };
+  [k: string]: any;
 }"
 `;
 
@@ -34,11 +32,8 @@ export interface JoiTypes {
     foo_1: boolean;
     foo_2: boolean;
     foo_3: \\"browser\\" | \\"hash\\" | \\"memory\\";
+    [k: string]: any;
   };
+  [k: string]: any;
 }"
-`;
-
-exports[`joi2Types string enum 1`] = `
-"export type JoiTypes = \\"browser\\" | \\"hash\\" | \\"memory\\";
-"
 `;

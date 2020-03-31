@@ -7,7 +7,8 @@
     "prepublishOnly": "npm run test && npm run build && np --yolo --no-publish --tag=latest",
     "postpublish": "tnpm-sync",
     "build": "father-build",
-    "test": "umi-test"
+    "test": "umi-test",
+    "ci": "umi-test --coverage"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/ycjcl868/joi2types#readme",
   "dependencies": {
     "@types/hapi__joi": "16.0.6",
+    "@types/json-schema": "^7.0.4",
     "json-schema-to-typescript": "^8.2.0"
   },
   "peerDependencies": {

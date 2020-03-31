@@ -64,7 +64,6 @@ test('joi2Types object required', async () => {
     })
   ).toEqual({
     type: 'object',
-
     additionalProperties: true,
   })
 
@@ -110,46 +109,8 @@ test('joi2Types object required', async () => {
     }
   })
 
-  const types = await Joi2Types(joi);
+  const types = await Joi2Types(joi, {
+    additionalProperties: true,
+  });
   expect(types.trim()).toMatchSnapshot();
-})
-
-test('joi2Types string enum', async () => {
-  const schema = Joi.string().valid('browser', 'hash', 'memory');
-  expect(
-    joi2JsonSchema(schema)
-  ).toEqual({
-    type: 'string',
-    enum: [
-      "browser",
-      "hash",
-      "memory",
-    ],
-  })
-
-  const types = await Joi2Types(schema);
-  expect(types).toMatchSnapshot()
-})
-
-test('joi2Types array', async () => {
-  const schema = Joi.array();
-  expect(
-    joi2JsonSchema(schema)
-  ).toEqual({
-    type: 'array',
-  })
-  const types = await Joi2Types(schema);
-  expect(types.trim()).toMatchSnapshot();
-
-  const schemaWithItems = Joi.array().items(Joi.string());
-  expect(
-    joi2JsonSchema(schemaWithItems)
-  ).toEqual({
-    type: 'array',
-    items: {
-      type: 'string',
-    }
-  })
-  const typesWithItems = await Joi2Types(schemaWithItems);
-  expect(typesWithItems.trim()).toMatchSnapshot();
 })
