@@ -1,0 +1,6 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`joi2Types string enum 1`] = `
+"export type JoiTypes = \\"browser\\" | \\"hash\\" | \\"memory\\";
+"
+`;

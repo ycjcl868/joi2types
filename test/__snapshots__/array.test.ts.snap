@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`joi2Types array 1`] = `"export type JoiTypes = any[];"`;
+
+exports[`joi2Types array 2`] = `"export type JoiTypes = string[];"`;
