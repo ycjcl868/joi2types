@@ -21,6 +21,23 @@ export interface JoiTypes {
 }"
 `;
 
+exports[`joi2Types object required 1`] = `
+"/**
+ * This is description
+ */
+export interface JoiTypes {
+  bar: boolean;
+  foo: {
+    /**
+     * this is foo_1
+     */
+    foo_1: boolean;
+    foo_2: boolean;
+    foo_3: \\"browser\\" | \\"hash\\" | \\"memory\\";
+  };
+}"
+`;
+
 exports[`joi2Types string enum 1`] = `
 "export type JoiTypes = \\"browser\\" | \\"hash\\" | \\"memory\\";
 "

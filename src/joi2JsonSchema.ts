@@ -13,10 +13,11 @@ const filterMap = (schema: Schema) => ({
     return undefined;
   }).filter(Boolean),
   description: schema._flags?.description,
+  required: schema._flags?.presence === 'required',
 })
 
 export default (schema: Schema, options = {}) => {
-  const { type, properties, enums, items: originItems, description } = filterMap(schema);
+  const { type, properties, enums, items: originItems, description, required } = filterMap(schema);
   let items = originItems;
   if (items?.length === 1) {
     items = items[0];
@@ -32,9 +33,10 @@ export default (schema: Schema, options = {}) => {
       if (properties?.forEach) {
         // @ts-ignore
         properties?.forEach((value, key) => {
-          const { type, properties, enums, description } = filterMap(value.schema || value);
+          const { type, properties, enums, description, required } = filterMap(value.schema || value);
           const property = {
             type,
+            ...(required && properties?.size > 0 ? { required: Array.from(properties.keys()) } : {}),
             ...(description ? { description } : {})
           };
           if (enums?.length) {
@@ -62,6 +64,10 @@ export default (schema: Schema, options = {}) => {
     }
 
     if (properties?.size > 0) {
+      if (required) {
+        // @ts-ignore
+        jsonType.required = Array.from(properties.keys());
+      }
       // @ts-ignore
       jsonType.properties = {};
       // @ts-ignore
