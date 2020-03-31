@@ -57,4 +57,5 @@ test('joi2Types array object', async () => {
       }
     }
   })
+  expect((await Joi2Types(schema)).trim()).toMatchSnapshot();
 })

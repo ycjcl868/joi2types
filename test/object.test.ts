@@ -57,15 +57,15 @@ test('joi2Types object', async () => {
 })
 
 test('joi2Types object required', async () => {
-  // const joiEmptyObj = Joi.object().required();
-  // expect(
-  //   joi2JsonSchema(joiEmptyObj, {
-  //     additionalProperties: true,
-  //   })
-  // ).toEqual({
-  //   type: 'object',
-  //   additionalProperties: true,
-  // })
+  const joiEmptyObj = Joi.object().required();
+  expect(
+    joi2JsonSchema(joiEmptyObj, {
+      additionalProperties: true,
+    })
+  ).toEqual({
+    type: 'object',
+    additionalProperties: true,
+  })
 
   const joi = Joi.object({
     bar: Joi.boolean().required(),
@@ -75,43 +75,42 @@ test('joi2Types object required', async () => {
       foo_3: Joi.string().valid('browser', 'hash', 'memory')
     }).required(),
   }).required().description('This is description');
-  // expect(
-  //   joi2JsonSchema(joi, {
-  //     additionalProperties: true,
-  //   })
-  // ).toEqual({
-  //   type: 'object',
-  //   description: "This is description",
-  //   additionalProperties: true,
-  //   required: ['bar', 'foo'],
-  //   properties: {
-  //     bar: {
-  //       type: "boolean",
-  //     },
-  //     foo: {
-  //       type: "object",
-  //       required: ['foo_1', 'foo_2', 'foo_3'],
-  //       additionalProperties: true,
-  //       properties: {
-  //         foo_1: {
-  //           description: "this is foo_1",
-  //           type: "boolean"
-  //         },
-  //         foo_2: {
-  //           type: "boolean"
-  //         },
-  //         foo_3: {
-  //           type: "string",
-  //           enum: ['browser', 'hash', 'memory'],
-  //         }
-  //       }
-  //     },
-  //   }
-  // })
+  expect(
+    joi2JsonSchema(joi, {
+      additionalProperties: true,
+    })
+  ).toEqual({
+    type: 'object',
+    description: "This is description",
+    additionalProperties: true,
+    required: ['bar', 'foo'],
+    properties: {
+      bar: {
+        type: "boolean",
+      },
+      foo: {
+        type: "object",
+        required: ['foo_1', 'foo_2', 'foo_3'],
+        additionalProperties: true,
+        properties: {
+          foo_1: {
+            description: "this is foo_1",
+            type: "boolean"
+          },
+          foo_2: {
+            type: "boolean"
+          },
+          foo_3: {
+            type: "string",
+            enum: ['browser', 'hash', 'memory'],
+          }
+        }
+      },
+    }
+  })
 
   const types = await Joi2Types(joi, {
     additionalProperties: true,
   });
-  console.log('types', types);
   expect(types.trim()).toMatchSnapshot();
 })
