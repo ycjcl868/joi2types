@@ -53,7 +53,6 @@ test('joi2Types object', async () => {
   })
 
   const types = await Joi2Types(joi);
-  console.log('types', types);
   expect(types.trim()).toMatchSnapshot();
 })
 
