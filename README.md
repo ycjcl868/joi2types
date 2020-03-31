@@ -1,6 +1,6 @@
 # joi2types
 
-[![NPM version](https://img.shields.io/npm/v/joi2types.svg?style=flat)](https://npmjs.org/package/joi2types) [![NPM downloads](http://img.shields.io/npm/dm/joi2types.svg?style=flat)](https://npmjs.org/package/joi2types) [![CircleCI](https://circleci.com/gh/ycjcl868/joi2types/tree/master.svg?style=svg)](https://circleci.com/gh/ycjcl868/joi2types/tree/master) [![Install size](https://badgen.net/packagephobia/install/joi2types)](https://packagephobia.now.sh/result?p=joi2types)
+[![codecov](https://codecov.io/gh/ycjcl868/joi2Types/branch/master/graph/badge.svg)](https://codecov.io/gh/ycjcl868/joi2Types) [![NPM version](https://img.shields.io/npm/v/joi2types.svg?style=flat)](https://npmjs.org/package/joi2types) [![NPM downloads](http://img.shields.io/npm/dm/joi2types.svg?style=flat)](https://npmjs.org/package/joi2types) [![CircleCI](https://circleci.com/gh/ycjcl868/joi2types/tree/master.svg?style=svg)](https://circleci.com/gh/ycjcl868/joi2types/tree/master) [![Install size](https://badgen.net/packagephobia/install/joi2types)](https://packagephobia.now.sh/result?p=joi2types)
 
 > a converter transforms @hapi/joi schema into TypeScript types.
 
