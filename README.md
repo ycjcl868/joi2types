@@ -59,3 +59,7 @@ export type IRoute = {
   [k: string]: any;
 }[];
 ```
+
+## TODO
+
+- [ ] support custom type definitions using `tsType`
