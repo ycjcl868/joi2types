@@ -4,6 +4,8 @@
 
 > a converter transforms @hapi/joi schema into TypeScript types.
 
+[online demo](https://runkit.com/ycjcl868/joi2types)
+
 ## Quick start
 
 Install
@@ -15,23 +17,30 @@ $ npm i joi2types -S
 use in your project
 
 ```ts
-import joi2Types from '../src';
+const Joi = require("@hapi/joi");
+const joi2Types = require("joi2types").default;
 
 // example for react-router-config
-const schema = Joi.array().items(Joi.object({
-  path: Joi.string().description('Any valid URL path'),
-  component: Joi.string().description('A React component to render only when the location matches.'),
-  redirect: Joi.string().description('navigate to a new location'),
-  exact: Joi.boolean().description('When true, the active class/style will only be applied if the location is matched exactly.'),
-}).unknown());
+const schema = Joi.array().items(
+  Joi.object({
+    path: Joi.string().description("Any valid URL path"),
+    component: Joi.string().description(
+      "A React component to render only when the location matches."
+    ),
+    redirect: Joi.string().description("navigate to a new location"),
+    exact: Joi.boolean().description(
+      "When true, the active class/style will only be applied if the location is matched exactly."
+    )
+  }).unknown()
+);
 
 (async () => {
   const types = await joi2Types(schema, {
-    bannerComment: '/** comment for test */',
-    interfaceName: 'IRoute'
+    bannerComment: "/** comment for test */",
+    interfaceName: "IRoute"
   });
-  // console.log(types);
-})()
+  console.log('types', types)
+})();
 ```
 
 It will convert into types as follows:
