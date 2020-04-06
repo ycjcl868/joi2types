@@ -4,7 +4,7 @@
 
 > a converter transforms @hapi/joi schema into TypeScript types.
 
-[online demo](https://runkit.com/ycjcl868/joi2types)
+[Online demo](https://runkit.com/ycjcl868/joi2types)
 
 ## Quick start
 
