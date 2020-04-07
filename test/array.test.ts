@@ -30,6 +30,7 @@ test('joi2Types array object', async () => {
     component: Joi.string().description('A React component to render only when the location matches.'),
     redirect: Joi.string().description('navigate to a new location'),
     exact: Joi.boolean().description('When true, the active class/style will only be applied if the location is matched exactly.'),
+    routes: Joi.array().items(Joi.link('...')),
   }).unknown());
   expect(
     joi2JsonSchema(schema)
@@ -37,6 +38,7 @@ test('joi2Types array object', async () => {
     type: 'array',
     items: {
       type: 'object',
+      additionalProperties: true,
       properties: {
         path: {
           type: 'string',
@@ -53,6 +55,12 @@ test('joi2Types array object', async () => {
         exact: {
           type: 'boolean',
           description: 'When true, the active class/style will only be applied if the location is matched exactly.'
+        },
+        routes: {
+          type: 'array',
+          items: {
+            type: 'any'
+          }
         }
       }
     }

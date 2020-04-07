@@ -9,7 +9,6 @@ export interface Options {
 }
 
 export const defaultOptions = {
-  additionalProperties: false,
   interfaceName: 'JoiTypes',
   bannerComment: '',
 }

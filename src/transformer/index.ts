@@ -3,6 +3,7 @@ import { Schema } from '@hapi/joi';
 
 import { Options, defaultOptions } from '../';
 import objectType from './object';
+import linkType from './link';
 import stringType from './string';
 import arrayType from './array';
 
@@ -14,6 +15,7 @@ const transformer: Parser = (schema, options = defaultOptions) => {
     string: stringType,
     function: objectType,
     array: arrayType,
+    link: linkType,
   }
   if (schema?.type && typeMap[schema?.type]) {
     return typeMap[schema.type](schema, { ...defaultOptions, ...options });

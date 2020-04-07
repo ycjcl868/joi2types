@@ -11,6 +11,7 @@ const parser: Parser<ObjectSchema> = (schema, options) => {
     _flags: {
       description,
       presence,
+      unknown,
     } = {},
     // @ts-ignore
     _ids: { _byKey } = {},
@@ -29,10 +30,10 @@ const parser: Parser<ObjectSchema> = (schema, options) => {
 
   return {
     type,
+    additionalProperties: !!unknown,
     ...(properties ? { properties } : {}),
     ...(description ? { description } : {}),
     ...(presence === 'required' && _byKey?.size > 0 ? { required: Array.from(_byKey.keys()) } : {}),
-    ...(options?.additionalProperties  ? { additionalProperties: options.additionalProperties } : {}),
   }
 }
 

@@ -22,6 +22,7 @@ exports[`joi2Types array object 1`] = `
    * When true, the active class/style will only be applied if the location is matched exactly.
    */
   exact?: boolean;
+  routes?: any[];
   [k: string]: any;
 }[];"
 `;
