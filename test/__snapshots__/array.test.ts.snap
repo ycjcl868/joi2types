@@ -13,7 +13,7 @@ exports[`joi2Types array object 1`] = `
   /**
    * A React component to render only when the location matches.
    */
-  component?: string;
+  component?: string | (() => any);
   /**
    * navigate to a new location
    */

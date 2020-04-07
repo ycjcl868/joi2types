@@ -2,9 +2,12 @@ import { JSONSchema4 } from 'json-schema';
 import { Schema } from '@hapi/joi';
 
 import { Options, defaultOptions } from '../';
+
 import objectType from './object';
 import linkType from './link';
+import alternativesType from './alternatives';
 import stringType from './string';
+import functionType from './function';
 import arrayType from './array';
 
 export type Parser<T = Schema> = (schema: T, options?: Options) => JSONSchema4;
@@ -13,8 +16,9 @@ const transformer: Parser = (schema, options = defaultOptions) => {
   const typeMap = {
     object: objectType,
     string: stringType,
-    function: objectType,
+    function: functionType,
     array: arrayType,
+    alternatives: alternativesType,
     link: linkType,
   }
   if (schema?.type && typeMap[schema?.type]) {
