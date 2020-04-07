@@ -27,7 +27,7 @@ test('joi2Types array', async () => {
 test('joi2Types array object', async () => {
   const schema = Joi.array().items(Joi.object({
     path: Joi.string().description('Any valid URL path'),
-    component: Joi.string().description('A React component to render only when the location matches.'),
+    component: Joi.alternatives(Joi.string(), Joi.function()).description('A React component to render only when the location matches.'),
     redirect: Joi.string().description('navigate to a new location'),
     exact: Joi.boolean().description('When true, the active class/style will only be applied if the location is matched exactly.'),
     routes: Joi.array().items(Joi.link('...')),
@@ -45,8 +45,16 @@ test('joi2Types array object', async () => {
           description: 'Any valid URL path'
         },
         component: {
-          type: 'string',
-          description: 'A React component to render only when the location matches.'
+          description: 'A React component to render only when the location matches.',
+          oneOf: [
+            {
+              type: 'string',
+            },
+            {
+              instanceOf: 'Function',
+              tsType: '(() => any)',
+            },
+          ]
         },
         redirect: {
           type: 'string',
