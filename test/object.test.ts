@@ -75,6 +75,7 @@ test('joi2Types object required', async () => {
     type: 'object',
     description: "This is description",
     required: ['bar', 'foo'],
+    additionalProperties: false,
     properties: {
       bar: {
         type: "boolean",
@@ -82,6 +83,7 @@ test('joi2Types object required', async () => {
       foo: {
         type: "object",
         required: ['foo_1', 'foo_2', 'foo_3'],
+        additionalProperties: false,
         properties: {
           foo_1: {
             description: "this is foo_1",

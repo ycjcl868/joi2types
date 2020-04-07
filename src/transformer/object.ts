@@ -30,10 +30,10 @@ const parser: Parser<ObjectSchema> = (schema, options) => {
 
   return {
     type,
+    additionalProperties: !!unknown,
     ...(properties ? { properties } : {}),
     ...(description ? { description } : {}),
     ...(presence === 'required' && _byKey?.size > 0 ? { required: Array.from(_byKey.keys()) } : {}),
-    ...(unknown ? { additionalProperties: true } : {}),
   }
 }
 
