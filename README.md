@@ -11,7 +11,7 @@
 Install
 
 ```ts
-$ npm i joi2types -S
+$ npm i joi2types @hapi/joi -S
 ```
 
 use in your project
