@@ -3,3 +3,6 @@ node_modules
 src
 .fatherrc.ts
 tsconfig.json
+test
+coverage
+.circleci
