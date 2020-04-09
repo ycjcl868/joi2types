@@ -1,5 +1,6 @@
-import { AlternativesSchema, Schema, isSchema } from '@hapi/joi';
+import { AlternativesSchema, Schema } from '@hapi/joi';
 
+import { isSchema } from '../utils';
 import transformer, { Parser } from './';
 
 // TODO
