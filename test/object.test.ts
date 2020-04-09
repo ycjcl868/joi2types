@@ -145,3 +145,35 @@ test('joi2Types object normal', async () => {
   const types = await Joi2Types(joi);
   expect(types.trim()).toMatchSnapshot();
 })
+
+test('object when', async () => {
+  const joi = Joi.object({
+    dark: Joi.boolean(),
+    compact: Joi.boolean().when('dark', {
+      is: true,
+      then: Joi
+        .valid(false)
+        .error(
+          new Error(
+            'The dark and compact mode cannot be enabled at the same time.',
+          ),
+        ),
+    }),
+  })
+
+
+  expect(
+    joi2JsonSchema(joi)
+  ).toEqual({
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      dark: {
+        type: "boolean",
+      },
+      compact: {
+        type: "boolean",
+      },
+    }
+  })
+})

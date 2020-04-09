@@ -1,4 +1,5 @@
 import { Schema } from '@hapi/joi';
+import { JSONSchema4 } from 'json-schema';
 import { compile } from 'json-schema-to-typescript'
 import transformer from './transformer';
 
@@ -18,7 +19,14 @@ export const defaultOptions = {
  */
 export default async (schema: Schema, options: Options = defaultOptions) => {
   const opts = { ...defaultOptions, ...options }
-  const jsonSchema = transformer(schema, opts);
+  let jsonSchema: JSONSchema4 = {
+    type: 'any',
+  }
+  try {
+    jsonSchema = transformer(schema, opts);
+  } catch (e) {
+    console.warn('[joi2types] error', e);
+  }
   const { bannerComment, interfaceName } = opts;
   const types = await compile(jsonSchema, interfaceName as string, { bannerComment });
   return types;
