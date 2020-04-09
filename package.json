@@ -7,6 +7,7 @@
     "prepublishOnly": "npm run test && npm run build && np --yolo --no-publish --tag=latest",
     "postpublish": "tnpm-sync",
     "build": "father-build",
+    "lint-staged": "lint-staged",
     "test": "umi-test",
     "ci": "umi-test --coverage"
   },
@@ -14,7 +15,19 @@
     "type": "git",
     "url": "git+https://github.com/ycjcl868/joi2types.git"
   },
-  "author": "",
+  "author": "ycjcl868",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.less": "stylelint --syntax less",
+    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ycjcl868/joi2types/issues"
@@ -31,6 +44,8 @@
   "devDependencies": {
     "@hapi/joi": "^17.1.1",
     "@types/jest": "^25.1.4",
+    "lint-staged": "^10.0.0",
+    "@umijs/fabric": "^2.0.8",
     "@umijs/test": "^3.0.16",
     "father-build": "^1.17.2",
     "np": "^6.2.0",
