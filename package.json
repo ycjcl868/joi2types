@@ -1,6 +1,6 @@
 {
   "name": "joi2types",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Convert @hapi/joi schema into TypeScript",
   "main": "lib/index.js",
   "scripts": {
