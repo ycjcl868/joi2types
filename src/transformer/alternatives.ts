@@ -1,4 +1,4 @@
-import joi, { AlternativesSchema, Schema } from '@hapi/joi';
+import { AlternativesSchema, Schema, isSchema } from '@hapi/joi';
 
 import transformer, { Parser } from './';
 
@@ -11,7 +11,7 @@ const parser: Parser<AlternativesSchema> = (schema, options) => {
       description,
     } = {},
   } = schema;
-  const oneOf = matches.map(({ schema }: { schema: Schema }) => joi.isSchema(schema) && transformer(schema)).filter(Boolean);
+  const oneOf = matches.map(({ schema }: { schema: Schema }) => isSchema(schema) && transformer(schema)).filter(Boolean);
   return {
     oneOf,
     ...(description ? { description } : {})
