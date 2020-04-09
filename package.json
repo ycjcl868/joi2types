@@ -16,18 +16,6 @@
     "url": "git+https://github.com/ycjcl868/joi2types.git"
   },
   "author": "ycjcl868",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*.less": "stylelint --syntax less",
-    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": [
-      "prettier --write"
-    ]
-  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ycjcl868/joi2types/issues"
