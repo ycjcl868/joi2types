@@ -39,10 +39,11 @@
     "json-schema-to-typescript": "^8.2.0"
   },
   "peerDependencies": {
-    "@hapi/joi": "17.x"
+    "@hapi/joi": "16.x"
   },
   "devDependencies": {
-    "@hapi/joi": "^17.1.1",
+    "husky": "^4.0.7",
+    "@hapi/joi": "^16.1.8",
     "@types/jest": "^25.1.4",
     "lint-staged": "^10.0.0",
     "@umijs/fabric": "^2.0.8",
