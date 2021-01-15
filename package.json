@@ -22,14 +22,14 @@
   },
   "homepage": "https://github.com/ycjcl868/joi2types#readme",
   "dependencies": {
-    "@types/hapi__joi": "16.0.6",
-    "@types/json-schema": "^7.0.4",
-    "json-schema-to-typescript": "^8.2.0"
+    "json-schema-to-typescript": "^10.1.2"
   },
   "peerDependencies": {
     "@hapi/joi": "16.x"
   },
   "devDependencies": {
+    "@types/hapi__joi": "16.0.6",
+    "@types/json-schema": "^7.0.4",
     "@hapi/joi": "16.1.8",
     "husky": "^4.0.7",
     "@types/jest": "^25.1.4",
