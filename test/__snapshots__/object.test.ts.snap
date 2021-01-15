@@ -5,31 +5,31 @@ exports[`joi2Types object 1`] = `
  * This is description
  */
 export interface JoiTypes {
-  bar?: boolean;
-  foo?: {
-    /**
-     * this is foo_1
-     */
-    foo_1?: boolean;
-    foo_2?: boolean;
-    foo_3?: \\"browser\\" | \\"hash\\" | \\"memory\\";
-    [k: string]: any;
-  };
-  [k: string]: any;
+bar?: boolean
+foo?: {
+/**
+ * this is foo_1
+ */
+foo_1?: boolean
+foo_2?: boolean
+foo_3?: (\\"browser\\" | \\"hash\\" | \\"memory\\")
+[k: string]: any
+}
+[k: string]: any
 }"
 `;
 
 exports[`joi2Types object normal 1`] = `
 "export interface JoiTypes {
-  bar?: {
-    a?: any;
-    [k: string]: any;
-  };
-  foo?: {
-    b?: any;
-    [k: string]: any;
-  };
-  [k: string]: any;
+bar?: {
+a?: any
+[k: string]: any
+}
+foo?: {
+b?: any
+[k: string]: any
+}
+[k: string]: any
 }"
 `;
 
@@ -38,14 +38,14 @@ exports[`joi2Types object required 1`] = `
  * This is description
  */
 export interface JoiTypes {
-  bar: boolean;
-  foo: {
-    /**
-     * this is foo_1
-     */
-    foo_1: boolean;
-    foo_2: boolean;
-    foo_3: \\"browser\\" | \\"hash\\" | \\"memory\\";
-  };
+bar: boolean
+foo: {
+/**
+ * this is foo_1
+ */
+foo_1: boolean
+foo_2: boolean
+foo_3: (\\"browser\\" | \\"hash\\" | \\"memory\\")
+}
 }"
 `;

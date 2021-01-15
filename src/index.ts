@@ -7,11 +7,13 @@ export interface Options {
   additionalProperties?: boolean;
   interfaceName?: string;
   bannerComment?: string;
+  format?: boolean;
 }
 
 export const defaultOptions = {
   interfaceName: 'JoiTypes',
   bannerComment: '',
+  format: false,
 };
 
 /**
@@ -24,8 +26,12 @@ export default async (schema: Schema, options: Options = defaultOptions) => {
   };
   try {
     jsonSchema = transformer(schema, opts);
-    const { bannerComment, interfaceName } = opts;
-    const types = await compile(jsonSchema, interfaceName as string, { bannerComment });
+    const { bannerComment, interfaceName, format } = opts;
+    const types = await compile(jsonSchema, interfaceName as string, {
+      bannerComment,
+      unknownAny: false,
+      format,
+    });
     return types;
   } catch (e) {
     console.warn('[joi2types] error', e);

@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`joi2Types array 1`] = `"export type JoiTypes = any[];"`;
+exports[`joi2Types array 1`] = `"export type JoiTypes = any[]"`;
 
-exports[`joi2Types array 2`] = `"export type JoiTypes = string[];"`;
+exports[`joi2Types array 2`] = `"export type JoiTypes = string[]"`;
 
 exports[`joi2Types array object 1`] = `
 "export type JoiTypes = {
-  /**
-   * Any valid URL path
-   */
-  path?: string;
-  /**
-   * A React component to render only when the location matches.
-   */
-  component?: string | (() => any);
-  /**
-   * navigate to a new location
-   */
-  redirect?: string;
-  /**
-   * When true, the active class/style will only be applied if the location is matched exactly.
-   */
-  exact?: boolean;
-  routes?: any[];
-  [k: string]: any;
-}[];"
+/**
+ * Any valid URL path
+ */
+path?: string
+/**
+ * A React component to render only when the location matches.
+ */
+component?: (string | (() => any))
+/**
+ * navigate to a new location
+ */
+redirect?: string
+/**
+ * When true, the active class/style will only be applied if the location is matched exactly.
+ */
+exact?: boolean
+routes?: any[]
+[k: string]: any
+}[]"
 `;
