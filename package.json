@@ -41,7 +41,7 @@
     "@umijs/fabric": "^2.0.8",
     "@umijs/test": "^3.3.7",
     "@vercel/ncc": "^0.27.0",
-    "husky": "^4.0.7",
+    "@umijs/yorkie": "^2.0.3",
     "json-schema-to-typescript": "^10.1.2",
     "lint-staged": "^10.0.0",
     "np": "^6.2.0",
