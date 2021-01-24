@@ -10,7 +10,6 @@ jobs:
       - node/with-cache:
           steps:
             - run: yarn
-            - run: yarn run build
             - run: yarn run ci
             - run: bash <(curl -s https://codecov.io/bash)
 
