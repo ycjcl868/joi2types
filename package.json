@@ -30,7 +30,6 @@
     "@hapi/joi": "16.x"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx ",
     "**/*.{js,jsx,tsx,ts,less,md,json}": [
       "prettier --write"
     ]

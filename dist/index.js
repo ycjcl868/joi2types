@@ -31993,7 +31993,6 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 const defaultOptions = {
     interfaceName: 'JoiTypes',
     bannerComment: '',
-    format: false,
 };
 /**
  * convert into types
@@ -32001,11 +32000,12 @@ const defaultOptions = {
 /* harmony default export */ const src_0 = ((schema, options = defaultOptions) => __awaiter(void 0, void 0, void 0, function* () {
     const opts = Object.assign(Object.assign({}, defaultOptions), options);
     const jsonSchema = src_transformer(schema, opts);
-    const { bannerComment, interfaceName, format } = opts;
+    const { bannerComment, interfaceName } = opts;
     const types = yield (0,src.compile)(jsonSchema, interfaceName, {
         bannerComment,
         unknownAny: false,
-        format,
+        // not using prettier, bundled will increase 9M in package
+        format: false,
     });
     return types;
 }));
