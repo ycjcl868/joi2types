@@ -1,3 +1,3 @@
 module.exports = {
-  transformIgnorePatterns: ['/node_modules/(?!.*@babel)[^/]+?/'],
+  transformIgnorePatterns: ['/dist/', '/node_modules/(?!.*@babel)[^/]+?/'],
 };

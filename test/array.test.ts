@@ -1,5 +1,5 @@
 import Joi from '@hapi/joi';
-import Joi2Types, { joi2JsonSchema } from '../dist/index';
+import Joi2Types, { joi2JsonSchema } from '../src';
 
 test('joi2Types array', async () => {
   const schema = Joi.array();

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`normal 1`] = `
+"/** comment for test */
+
+export type IRoute = {
+/**
+ * Any valid URL path
+ */
+path?: string
+/**
+ * A React component to render only when the location matches.
+ */
+component?: string
+/**
+ * navigate to a new location
+ */
+redirect?: string
+/**
+ * When true, the active class/style will only be applied if the location is matched exactly.
+ */
+exact?: boolean
+[k: string]: any
+}[]"
+`;
