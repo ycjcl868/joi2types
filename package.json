@@ -10,9 +10,11 @@
     "prepublishOnly": "npm run test && npm run build && np --yolo --no-publish --tag=latest",
     "postpublish": "tnpm-sync",
     "build": "ncc build src/index.ts -o dist -e prettier",
-    "precommit": "lint-staged && npm run build",
     "test": "umi-test",
     "ci": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged && npm run build"
   },
   "repository": {
     "type": "git",
@@ -41,7 +43,7 @@
     "@umijs/fabric": "^2.0.8",
     "@umijs/test": "^3.3.7",
     "@vercel/ncc": "^0.27.0",
-    "@umijs/yorkie": "^2.0.3",
+    "yorkie": "^2.0.0",
     "json-schema-to-typescript": "^10.1.2",
     "lint-staged": "^10.0.0",
     "np": "^6.2.0",
