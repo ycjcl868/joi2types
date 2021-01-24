@@ -1,6 +1,7 @@
-import { Schema } from '@hapi/joi';
-import { JSONSchema4 } from 'json-schema';
+import type { Schema } from '@hapi/joi';
+import type { JSONSchema4 } from 'json-schema';
 import { compile } from 'json-schema-to-typescript';
+
 import transformer from './transformer';
 
 export interface Options {

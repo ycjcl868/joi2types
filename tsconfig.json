@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2015",
     "moduleResolution": "node",
-    "jsx": "preserve",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -13,6 +12,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "declaration": true
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
     "node_modules",
     "dist",

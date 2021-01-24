@@ -1,109 +1,105 @@
 import Joi from '@hapi/joi';
-import Joi2Types, { joi2JsonSchema } from '../src';
+import Joi2Types, { joi2JsonSchema } from '../dist/index';
 
 test('joi2Types object', async () => {
   const joiEmptyObj = Joi.object().unknown();
-  expect(
-    joi2JsonSchema(joiEmptyObj)
-  ).toEqual({
+  expect(joi2JsonSchema(joiEmptyObj)).toEqual({
     type: 'object',
     additionalProperties: true,
-  })
+  });
 
   const joi = Joi.object({
     bar: Joi.boolean(),
     foo: Joi.object({
       foo_1: Joi.boolean().description('this is foo_1'),
       foo_2: Joi.boolean(),
-      foo_3: Joi.string().valid('browser', 'hash', 'memory')
+      foo_3: Joi.string().valid('browser', 'hash', 'memory'),
     }).unknown(),
-  }).unknown().description('This is description');
-  expect(
-    joi2JsonSchema(joi)
-  ).toEqual({
+  })
+    .unknown()
+    .description('This is description');
+  expect(joi2JsonSchema(joi)).toEqual({
     type: 'object',
-    description: "This is description",
+    description: 'This is description',
     additionalProperties: true,
     properties: {
       bar: {
-        type: "boolean"
+        type: 'boolean',
       },
       foo: {
-        type: "object",
+        type: 'object',
         additionalProperties: true,
         properties: {
           foo_1: {
-            description: "this is foo_1",
-            type: "boolean"
+            description: 'this is foo_1',
+            type: 'boolean',
           },
           foo_2: {
-            type: "boolean"
+            type: 'boolean',
           },
           foo_3: {
-            type: "string",
+            type: 'string',
             enum: ['browser', 'hash', 'memory'],
-          }
-        }
+          },
+        },
       },
-    }
-  })
+    },
+  });
 
   const types = await Joi2Types(joi);
   expect(types.trim()).toMatchSnapshot();
-})
+});
 
 test('joi2Types object required', async () => {
   const joiEmptyObj = Joi.object().unknown().required();
-  expect(
-    joi2JsonSchema(joiEmptyObj)
-  ).toEqual({
+  expect(joi2JsonSchema(joiEmptyObj)).toEqual({
     type: 'object',
     additionalProperties: true,
-  })
+  });
 
   const joi = Joi.object({
     bar: Joi.boolean().required(),
     foo: Joi.object({
       foo_1: Joi.boolean().description('this is foo_1'),
       foo_2: Joi.boolean(),
-      foo_3: Joi.string().valid('browser', 'hash', 'memory')
+      foo_3: Joi.string().valid('browser', 'hash', 'memory'),
     }).required(),
-  }).required().description('This is description');
-  expect(
-    joi2JsonSchema(joi)
-  ).toEqual({
+  })
+    .required()
+    .description('This is description');
+  expect(joi2JsonSchema(joi)).toEqual({
     type: 'object',
-    description: "This is description",
+    description: 'This is description',
     required: ['bar', 'foo'],
     additionalProperties: false,
     properties: {
       bar: {
-        type: "boolean",
+        type: 'boolean',
       },
       foo: {
-        type: "object",
+        type: 'object',
         required: ['foo_1', 'foo_2', 'foo_3'],
         additionalProperties: false,
         properties: {
           foo_1: {
-            description: "this is foo_1",
-            type: "boolean"
+            description: 'this is foo_1',
+            type: 'boolean',
           },
           foo_2: {
-            type: "boolean"
+            type: 'boolean',
           },
           foo_3: {
-            type: "string",
+            type: 'string',
             enum: ['browser', 'hash', 'memory'],
-          }
-        }
+          },
+        },
       },
-    }
-  })
+    },
+  });
 
   const types = await Joi2Types(joi);
   expect(types.trim()).toMatchSnapshot();
-})
+});
 
 test('joi2Types object normal', async () => {
   const joi = Joi.object({
@@ -115,65 +111,56 @@ test('joi2Types object normal', async () => {
     }).unknown(),
   }).unknown();
 
-  expect(
-    joi2JsonSchema(joi)
-  ).toEqual({
+  expect(joi2JsonSchema(joi)).toEqual({
     type: 'object',
     additionalProperties: true,
     properties: {
       bar: {
-        type: "object",
+        type: 'object',
         additionalProperties: true,
         properties: {
           a: {
-            type: "any"
-          }
+            type: 'any',
+          },
         },
       },
       foo: {
-        type: "object",
+        type: 'object',
         additionalProperties: true,
         properties: {
           b: {
-            type: "any"
+            type: 'any',
           },
-        }
+        },
       },
-    }
-  })
+    },
+  });
 
   const types = await Joi2Types(joi);
   expect(types.trim()).toMatchSnapshot();
-})
+});
 
 test('object when', async () => {
   const joi = Joi.object({
     dark: Joi.boolean(),
     compact: Joi.boolean().when('dark', {
       is: true,
-      then: Joi
-        .valid(false)
-        .error(
-          new Error(
-            'The dark and compact mode cannot be enabled at the same time.',
-          ),
-        ),
+      then: Joi.valid(false).error(
+        new Error('The dark and compact mode cannot be enabled at the same time.'),
+      ),
     }),
-  })
+  });
 
-
-  expect(
-    joi2JsonSchema(joi)
-  ).toEqual({
+  expect(joi2JsonSchema(joi)).toEqual({
     type: 'object',
     additionalProperties: false,
     properties: {
       dark: {
-        type: "boolean",
+        type: 'boolean',
       },
       compact: {
-        type: "boolean",
+        type: 'boolean',
       },
-    }
-  })
-})
+    },
+  });
+});
