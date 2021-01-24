@@ -24,13 +24,11 @@
     "url": "https://github.com/ycjcl868/joi2types/issues"
   },
   "homepage": "https://github.com/ycjcl868/joi2types#readme",
-  "dependencies": {
-    "json-schema-to-typescript": "^10.1.2"
-  },
   "peerDependencies": {
     "@hapi/joi": "16.x"
   },
   "devDependencies": {
+    "json-schema-to-typescript": "^10.1.2",
     "@hapi/joi": "16.1.8",
     "@vercel/ncc": "^0.27.0",
     "@types/hapi__joi": "16.0.6",
