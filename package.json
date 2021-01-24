@@ -10,7 +10,7 @@
     "prepublishOnly": "npm run test && npm run build && np --yolo --no-publish --tag=latest",
     "postpublish": "tnpm-sync",
     "build": "ncc build src/index.ts -o dist -e prettier",
-    "lint-staged": "lint-staged",
+    "precommit": "lint-staged && npm run build",
     "test": "umi-test",
     "ci": "umi-test --coverage"
   },
@@ -26,6 +26,12 @@
   "homepage": "https://github.com/ycjcl868/joi2types#readme",
   "peerDependencies": {
     "@hapi/joi": "16.x"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx ",
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@hapi/joi": "^16.1.8",
