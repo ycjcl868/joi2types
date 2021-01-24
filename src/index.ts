@@ -8,13 +8,11 @@ export interface Options {
   additionalProperties?: boolean;
   interfaceName?: string;
   bannerComment?: string;
-  format?: boolean;
 }
 
 export const defaultOptions = {
   interfaceName: 'JoiTypes',
   bannerComment: '',
-  format: false,
 };
 
 /**
@@ -23,11 +21,12 @@ export const defaultOptions = {
 export default async (schema: Schema, options: Options = defaultOptions) => {
   const opts = { ...defaultOptions, ...options };
   const jsonSchema: JSONSchema4 = transformer(schema, opts);
-  const { bannerComment, interfaceName, format } = opts;
+  const { bannerComment, interfaceName } = opts;
   const types = await compile(jsonSchema, interfaceName as string, {
     bannerComment,
     unknownAny: false,
-    format,
+    // not using prettier, bundled will increase 9M in package
+    format: false,
   });
   return types;
 };
