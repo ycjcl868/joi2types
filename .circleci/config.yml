@@ -9,8 +9,8 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: yarn add @umijs/test @hapi/joi
-            - run: yarn run ci
+            - run: npm install @umijs/test @hapi/joi
+            - run: npm run ci
             - run: bash <(curl -s https://codecov.io/bash)
 
 workflows:
