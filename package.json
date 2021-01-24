@@ -9,7 +9,7 @@
   "scripts": {
     "prepublishOnly": "npm run test && npm run build && np --yolo --no-publish --tag=latest",
     "postpublish": "tnpm-sync",
-    "build": "ncc build src/index.ts -o dist",
+    "build": "ncc build src/index.ts -o dist -e prettier",
     "lint-staged": "lint-staged",
     "test": "umi-test",
     "ci": "umi-test --coverage"
@@ -28,16 +28,16 @@
     "@hapi/joi": "16.x"
   },
   "devDependencies": {
-    "json-schema-to-typescript": "^10.1.2",
-    "@hapi/joi": "16.1.8",
-    "@vercel/ncc": "^0.27.0",
+    "@hapi/joi": "^17.1.1",
     "@types/hapi__joi": "16.0.6",
     "@types/jest": "^25.1.4",
     "@types/json-schema": "^7.0.4",
     "@umijs/fabric": "^2.0.8",
-    "@umijs/test": "^3.0.16",
+    "@umijs/test": "^3.3.7",
+    "@vercel/ncc": "^0.27.0",
     "father-build": "^1.17.2",
     "husky": "^4.0.7",
+    "json-schema-to-typescript": "^10.1.2",
     "lint-staged": "^10.0.0",
     "np": "^6.2.0",
     "tnpm-sync": "^1.0.0"
