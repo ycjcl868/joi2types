@@ -9,9 +9,9 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
-            - run: npm build
-            - run: npm run ci
+            - run: yarn
+            - run: yarn run build
+            - run: yarn run ci
             - run: bash <(curl -s https://codecov.io/bash)
 
 workflows:
