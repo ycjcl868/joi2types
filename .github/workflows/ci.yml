@@ -1,0 +1,42 @@
+name: CI
+
+env:
+  NODE_OPTIONS: --max-old-space-size=6144
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - 'opened'
+      - 'synchronize'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [16.x]
+        os: [ubuntu-latest, windows-latest]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm i
+      - run: npm run build
+      - run: npm run ci
