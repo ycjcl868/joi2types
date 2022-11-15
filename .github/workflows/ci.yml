@@ -38,5 +38,5 @@ jobs:
 
       - name: Install dependencies
         run: npm i
-      - run: npm build
+      - run: npm run build
       - run: npm run ci
