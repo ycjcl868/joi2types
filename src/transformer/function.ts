@@ -13,7 +13,7 @@ const parser: Parser<LinkSchema> = (schema, options) => {
   } = schema;
   return {
     instanceOf: 'Function',
-    tsType: '(() => any)',
+    tsType: 'Function',
     ...(description ? { description } : {})
   }
 }
